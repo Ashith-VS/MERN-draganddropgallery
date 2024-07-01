@@ -23,7 +23,7 @@ const App = () => {
       // setImages(response.data);
     } catch (error) {
       console.error("Error fetching images: ", error);
-      toast.error('Error fetching images');
+      toast.error(error.message);
     }finally {
       setIsLoading(false);
     }
@@ -33,7 +33,6 @@ const App = () => {
     fetchImages();
   }, []);
 
-
   const handleUpload = async (e) => {
     // const files = e.target.files[0];  //single file
     const files = Array.from(e.target.files); //multiple files
@@ -41,7 +40,7 @@ const App = () => {
       const formdata = new FormData();
       // formdata.append("avatar", files); //single file
       // multiple files
-files.map(file =>{
+files.forEach(file =>{
       formdata.append("photos", file);
 })
 setIsLoading(true)
